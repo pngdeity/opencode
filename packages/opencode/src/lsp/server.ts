@@ -1396,7 +1396,7 @@ export const KotlinLS: Info = {
 export const YamlLS: Info = {
   id: "yaml-ls",
   extensions: [".yaml", ".yml"],
-  root: NearestRoot(["package-lock.json", "bun.lockb", "bun.lock", "pnpm-lock.yaml", "yarn.lock"]),
+  root: NearestRoot(["package-lock.json", "bun.lockb", "bun.lock", "pnpm-lock.yaml", "yarn.lock", ".git"]),
   async spawn(root, _ctx, flags) {
     let binary = which("yaml-language-server")
     const args: string[] = []

@@ -260,8 +260,7 @@ export const layer = Layer.effect(
         for (const server of Object.values(s.servers)) {
           if (server.extensions.length && !server.extensions.includes(extension)) continue
 
-          const root = await server.root(file, ctx)
-          if (!root) continue
+          const root = (await server.root(file, ctx)) ?? path.dirname(file)
           if (s.broken.has(root + server.id)) continue
 
           const match = s.clients.find((x) => x.root === root && x.serverID === server.id)
@@ -334,8 +333,7 @@ export const layer = Layer.effect(
         const extension = path.parse(file).ext || file
         for (const server of Object.values(s.servers)) {
           if (server.extensions.length && !server.extensions.includes(extension)) continue
-          const root = await server.root(file, ctx)
-          if (!root) continue
+          const root = (await server.root(file, ctx)) ?? path.dirname(file)
           if (s.broken.has(root + server.id)) continue
           return true
         }
